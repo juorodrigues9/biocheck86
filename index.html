@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioCheck — Avaliação Física, Nutrição e Treino em Araxá</title>
+  <meta name="description" content="Centro especializado em avaliação física, nutrição e treino em Araxá-MG. Método integrado baseado em ciência e dados corporais reais.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul:       #1B2A4A;
+      --azul-mid:   #2A3F6B;
+      --amarelo:    #D4A017;
+      --amarelo-bg: #F5D87A;
+      --cinza-bg:   #EDECEB;
+      --cinza-card: #E2E1DF;
+      --cinza-text: #6B6B6B;
+      --branco:     #FAFAF8;
+      --borda:      rgba(27,42,74,0.11);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background-color: var(--cinza-bg);
+      color: var(--azul);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── UTILITY ── */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--amarelo);
+    }
+    .eyebrow::before { margin-right: 10px; }
+    .eyebrow::after  { margin-left: 10px; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--azul);
+      color: var(--branco);
+    }
+    .btn-primary:hover { background: var(--azul-mid); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--azul);
+      color: var(--azul);
+    }
+    .btn-outline:hover { background: var(--azul); color: var(--branco); }
+    .btn-outline-white {
+      background: transparent;
+      border: 1.5px solid rgba(250,250,248,0.4);
+      color: var(--branco);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+    .btn-gold {
+      background: var(--amarelo);
+      color: var(--branco);
+    }
+    .btn-gold:hover { background: #b8891a; }
+    .btn-whatsapp {
+      background: #25D366;
+      color: var(--branco);
+    }
+    .btn-whatsapp:hover { background: #1da851; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.66rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid var(--borda);
+      background: var(--cinza-bg);
+      color: var(--azul);
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(237,236,235,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo img {
+      height: 46px;
+      width: auto;
+    }
+    .nav-logo-placeholder {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo-placeholder .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--azul);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amarelo);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo-placeholder .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--azul);
+      letter-spacing: 0.08em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amarelo); }
+    .nav-cta { margin-left: 1rem; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--azul);
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      background: var(--cinza-bg);
+      border-top: 1px solid var(--borda);
+      padding: 1.5rem 2rem 2rem;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      padding: 0.7rem 0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      border-bottom: 1px solid var(--borda);
+    }
+    .mobile-menu a:last-child { border-bottom: none; margin-top: 1rem; }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 70px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      background: var(--cinza-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 3rem 6rem 4rem;
+    }
+    .hero-right {
+      background: #E4E3E1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 3rem;
+      border-left: 1px solid var(--borda);
+    }
+    .hero-eyebrow { margin-bottom: 2rem; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--azul);
+      margin-bottom: 2rem;
+    }
+    .hero-title .highlight {
+      background: var(--amarelo);
+      color: var(--branco);
+      padding: 0 0.15em;
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--cinza-text);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--azul);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--cinza-text);
+      letter-spacing: 0.06em;
+      max-width: 180px;
+      line-height: 1.4;
+    }
+    .stat-divider {
+      height: 1px;
+      background: var(--borda);
+      margin: 0 0 0 0;
+    }
+    .hero-quote {
+      border-left: 2.5px solid var(--amarelo);
+      padding-left: 1.2rem;
+      margin-top: auto;
+    }
+    .hero-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--azul);
+      line-height: 1.5;
+    }
+
+    /* ── SOBRE ── */
+    #sobre {
+      padding: 7rem 0;
+      background: var(--branco);
+    }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .sobre-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--azul);
+      margin: 1.5rem 0;
+    }
+    .sobre-left h2 em {
+      font-style: italic;
+      color: var(--amarelo);
+    }
+    .sobre-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--cinza-text);
+      margin-bottom: 1rem;
+    }
+    .sobre-text + .sobre-text { margin-top: 0; }
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .pilar-card {
+      padding: 1.5rem;
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      background: var(--cinza-card);
+    }
+    .pilar-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+    }
+    .pilar-card p {
+      font-size: 0.82rem;
+      color: var(--cinza-text);
+      line-height: 1.6;
+    }
+    .sobre-right {
+      background: var(--azul);
+      border-radius: 12px;
+      padding: 3rem;
+      position: sticky;
+      top: 90px;
+    }
+    .sobre-right h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--branco);
+      line-height: 1.3;
+      margin: 1.5rem 0 2rem;
+    }
+    .metodo-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .metodo-step {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .metodo-step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--amarelo);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+    .step-content h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--branco);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .step-content p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── PROFISSIONAIS ── */
+    #profissionais {
+      padding: 7rem 0;
+      background: var(--cinza-bg);
+    }
+    .profissionais-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .profissionais-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--azul);
+      margin: 1.2rem 0 1rem;
+    }
+    .profissionais-header p {
+      font-size: 0.95rem;
+      color: var(--cinza-text);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .prof-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--branco);
+      border: 1px solid var(--borda);
+    }
+    .prof-photo {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      background: var(--cinza-card);
+    }
+    .prof-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+    }
+    .prof-card:hover .prof-photo img { transform: scale(1.03); }
+    .prof-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--cinza-card) 0%, #d0cecc 100%);
+    }
+    .prof-photo-placeholder-inner {
+      width: 180px;
+      height: 240px;
+      background: linear-gradient(180deg, rgba(27,42,74,0.1) 0%, rgba(27,42,74,0.25) 100%);
+      border-radius: 90px 90px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prof-photo-placeholder-inner span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(27,42,74,0.3);
+    }
+    .prof-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(to top, rgba(27,42,74,0.92) 0%, transparent 100%);
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    .prof-card:hover .prof-overlay { transform: translateY(0); }
+    .prof-overlay-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--branco);
+    }
+    .prof-overlay-role {
+      font-size: 0.7rem;
+      color: var(--amarelo-bg);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .prof-card-body {
+      padding: 1.8rem;
+    }
+    .prof-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--azul);
+      margin-bottom: 0.2rem;
+    }
+    .prof-role {
+      font-size: 0.72rem;
+      color: var(--amarelo);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .prof-registro {
+      font-size: 0.7rem;
+      color: var(--cinza-text);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .prof-desc {
+      font-size: 0.85rem;
+      color: var(--cinza-text);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .prof-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .prof-whatsapp {
+      font-size: 0.72rem;
+      color: var(--azul);
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--borda);
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .wsp-icon {
+      width: 18px;
+      height: 18px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wsp-icon svg { width: 10px; height: 10px; }
+    .equipe-box {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 420px;
+      background: var(--cinza-card);
+    }
+    .equipe-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .equipe-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #d5d4d2 0%, #c8c7c5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .equipe-placeholder-person {
+      width: 130px;
+      height: 200px;
+      background: linear-gradient(180deg, rgba(27,42,74,0.12) 0%, rgba(27,42,74,0.28) 100%);
+      border-radius: 65px 65px 0 0;
+    }
+    .equipe-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 2.5rem 2rem;
+      background: linear-gradient(to top, rgba(27,42,74,0.9) 0%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .equipe-overlay p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--branco);
+      max-width: 360px;
+      line-height: 1.4;
+    }
+
+    /* ── SERVIÇOS ── */
+    #servicos {
+      padding: 7rem 0;
+      background: var(--branco);
+    }
+    .servicos-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .servicos-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--azul);
+      margin: 1.2rem 0 1rem;
+    }
+    .servicos-header p {
+      font-size: 0.95rem;
+      color: var(--cinza-text);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .servico-card {
+      background: var(--cinza-card);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 2rem 1.8rem;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      position: relative;
+    }
+    .servico-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(27,42,74,0.09);
+    }
+    .servico-card.destaque {
+      background: var(--azul);
+      border-color: transparent;
+    }
+    .badge-destaque {
+      display: inline-block;
+      background: var(--amarelo);
+      color: var(--branco);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
+    .servico-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--amarelo);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .servico-card.destaque .servico-num { color: var(--amarelo-bg); }
+    .servico-nome {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--azul);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .servico-card.destaque .servico-nome { color: var(--branco); }
+    .servico-desc {
+      font-size: 0.82rem;
+      color: var(--cinza-text);
+      line-height: 1.65;
+    }
+    .servico-card.destaque .servico-desc { color: rgba(250,250,248,0.65); }
+    .servico-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-top: 1.5rem;
+      transition: gap 0.2s;
+    }
+    .servico-link:hover { gap: 0.8rem; }
+    .servico-card.destaque .servico-link { color: var(--amarelo-bg); }
+    .foco-total-box {
+      background: var(--cinza-bg);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .foco-total-content {}
+    .foco-total-content .foco-eyebrow { margin-bottom: 1rem; }
+    .foco-total-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--azul);
+      margin-bottom: 0.8rem;
+    }
+    .foco-total-content p {
+      font-size: 0.9rem;
+      color: var(--cinza-text);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .foco-total-cta { flex-shrink: 0; }
+
+    /* ── METODOLOGIA ── */
+    #metodologia {
+      padding: 7rem 0;
+      background: var(--azul);
+    }
+    .metodologia-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .metodologia-header .eyebrow { justify-content: center; color: var(--amarelo-bg); }
+    .metodologia-header .eyebrow::before,
+    .metodologia-header .eyebrow::after { background: var(--amarelo-bg); }
+    .metodologia-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--branco);
+      margin: 1.2rem 0 1rem;
+    }
+    .metodologia-header h2 em {
+      font-style: italic;
+      color: var(--amarelo-bg);
+    }
+    .metodologia-header p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .metodologia-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .metod-item {
+      padding: 3rem 2rem;
+      background: rgba(255,255,255,0.03);
+      transition: background 0.2s;
+    }
+    .metod-item:hover { background: rgba(255,255,255,0.07); }
+    .metod-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--amarelo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+    }
+    .metod-circle span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--branco);
+    }
+    .metod-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--branco);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    .metod-item p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* ── INSTAGRAM ── */
+    #instagram {
+      padding: 7rem 0;
+      background: var(--cinza-bg);
+    }
+    .instagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+    .instagram-header-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--azul);
+      margin: 1rem 0 0.5rem;
+    }
+    .instagram-handle {
+      font-size: 0.85rem;
+      color: var(--cinza-text);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .instagram-handle a { color: var(--amarelo); font-weight: 500; }
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      margin-bottom: 3rem;
+    }
+    .insta-post {
+      aspect-ratio: 1;
+      background: var(--cinza-card);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .insta-post-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    .insta-post:hover .insta-post-inner { transform: scale(1.05); }
+    .insta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(27,42,74,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .insta-post:hover .insta-overlay { background: rgba(27,42,74,0.55); }
+    .insta-overlay-icon {
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: white;
+      font-size: 1.4rem;
+    }
+    .insta-post:hover .insta-overlay-icon { opacity: 1; }
+    .instagram-footer { text-align: center; }
+
+    /* Post colors (decorative) */
+    .insta-bg-1 { background: linear-gradient(135deg, #1B2A4A 0%, #2A3F6B 100%); }
+    .insta-bg-2 { background: linear-gradient(135deg, #D4A017 0%, #b8891a 100%); }
+    .insta-bg-3 { background: linear-gradient(135deg, #E2E1DF 0%, #ccc 100%); }
+    .insta-bg-4 { background: linear-gradient(135deg, #2A3F6B 0%, #1B2A4A 100%); }
+    .insta-bg-5 { background: linear-gradient(135deg, #EDECEB 0%, #d5d4d2 100%); }
+    .insta-bg-6 { background: linear-gradient(135deg, #b8891a 0%, #D4A017 100%); }
+    .insta-post-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .insta-post-label.dark { color: rgba(27,42,74,0.4); }
+
+    /* ── BLOG ── */
+    #blog {
+      padding: 7rem 0;
+      background: var(--branco);
+    }
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+    }
+    .blog-header-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--azul);
+      margin: 1rem 0 0.5rem;
+    }
+    .blog-header-left p {
+      font-size: 0.9rem;
+      color: var(--cinza-text);
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .blog-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cinza-card);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(27,42,74,0.09);
+    }
+    .blog-card-img {
+      height: 200px;
+      background: var(--azul);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blog-card-img-placeholder-inner {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .blog-card-img-placeholder-inner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+    .blog-card-body {
+      padding: 1.8rem;
+    }
+    .blog-cat {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-bottom: 0.8rem;
+    }
+    .blog-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--azul);
+      line-height: 1.35;
+      margin-bottom: 0.8rem;
+    }
+    .blog-card-excerpt {
+      font-size: 0.82rem;
+      color: var(--cinza-text);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--borda);
+    }
+    .blog-card-meta span {
+      font-size: 0.72rem;
+      color: var(--cinza-text);
+      letter-spacing: 0.05em;
+    }
+    .blog-card-link {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .blog-card-link:hover { gap: 0.7rem; color: var(--amarelo); }
+
+    /* ── CONTATO ── */
+    #contato {
+      padding: 7rem 0;
+      background: var(--cinza-bg);
+    }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+    }
+    .contato-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--azul);
+      line-height: 1.2;
+      margin: 1.5rem 0 1rem;
+    }
+    .contato-left p {
+      font-size: 0.9rem;
+      color: var(--cinza-text);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .contato-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .contato-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contato-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--azul);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contato-icon svg { width: 16px; height: 16px; color: var(--branco); }
+    .contato-info-text strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 0.2rem;
+    }
+    .contato-info-text span {
+      font-size: 0.88rem;
+      color: var(--cinza-text);
+    }
+    .contato-right {
+      background: var(--branco);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid var(--borda);
+    }
+    .contato-right h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+    }
+    .contato-right .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--cinza-text);
+      margin-bottom: 1.8rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--borda);
+      border-radius: 4px;
+      background: var(--cinza-bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--azul);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--azul);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-submit { margin-top: 1.5rem; width: 100%; text-align: center; }
+    .form-submit .btn { width: 100%; }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: var(--azul);
+      padding: 5rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand {}
+    .footer-logo {
+      height: 48px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-logo img {
+      height: 48px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-logo-placeholder {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-logo-placeholder .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amarelo-bg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+    .footer-logo-placeholder .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--branco);
+      letter-spacing: 0.08em;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-social a {
+      color: var(--amarelo-bg);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amarelo-bg);
+      margin-bottom: 1.4rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .footer-links a {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--branco); }
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .footer-contact-list li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .footer-contact-list li strong {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.2rem;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+    .footer-cregs {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+
+    /* ── WHATSAPP FLOATING ── */
+    .wsp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+      background: #25D366;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wsp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.45);
+    }
+    .wsp-float svg { width: 26px; height: 26px; fill: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 5rem 2rem 3rem; }
+      .hero-right { padding: 3rem 2rem 5rem; border-left: none; border-top: 1px solid var(--borda); }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-right { position: static; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+
+      .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .foco-total-box { flex-direction: column; text-align: center; }
+      .foco-total-content p { margin: 0 auto; }
+
+      .metodologia-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .instagram-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .blog-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .contato-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-cregs { text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 1.2rem; }
+      .pilares-grid { grid-template-columns: 1fr; }
+      .servicos-grid { grid-template-columns: 1fr; }
+      .metodologia-grid { grid-template-columns: 1fr; }
+      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { text-align: center; }
+      .equipe-overlay { flex-direction: column; gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-placeholder">
+        <div class="logo-mark">BC</div>
+        <span class="logo-text">BioCheck</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#profissionais">Equipe</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#metodologia">Método</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#blog">Blog</a>
+    </nav>
+    <a href="#contato" class="btn btn-primary nav-cta">Agendar</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" class="mobile-link">Sobre</a>
+    <a href="#profissionais" class="mobile-link">Equipe</a>
+    <a href="#servicos" class="mobile-link">Serviços</a>
+    <a href="#metodologia" class="mobile-link">Método</a>
+    <a href="#instagram" class="mobile-link">Instagram</a>
+    <a href="#blog" class="mobile-link">Blog</a>
+    <a href="#contato" class="btn btn-primary">Agendar</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="eyebrow hero-eyebrow">Araxá · Minas Gerais</div>
+    <h1 class="hero-title">
+      Resultado<br>
+      não é sorte.<br>
+      É <span class="highlight">método.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Avaliação física, nutrição e treino integrados.<br>
+      Ciência aplicada à sua realidade.
+    </p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn btn-primary">Agendar avaliação</a>
+      <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">02</span>
+        <span class="stat-label">Profissionais especializados</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">07</span>
+        <span class="stat-label">Serviços e protocolos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">01</span>
+        <span class="stat-label">Método integrado de cuidado</span>
+      </div>
+    </div>
+    <div class="hero-quote">
+      <p>"Antes de mudar o corpo, entenda o corpo."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-left">
+        <div class="eyebrow">Sobre a BioCheck</div>
+        <h2>
+          Dois profissionais.<br>
+          <em>Um método integrado.</em>
+        </h2>
+        <p class="sobre-text">
+          A BioCheck é um centro especializado em avaliação física, prescrição de treinamento e acompanhamento nutricional, com atuação baseada em evidências científicas.
+        </p>
+        <p class="sobre-text">
+          Não trabalhamos com achismos. Trabalhamos com dados. Antes de qualquer prescrição, entendemos o seu corpo por meio de avaliações completas — e a partir daí, montamos uma estratégia feita para a sua realidade.
+        </p>
+        <p class="sobre-text">
+          Nosso modelo une Educação Física e Nutrição em um único acompanhamento, para que treino e alimentação trabalhem juntos pelo seu resultado.
+        </p>
+        <div class="pilares-grid">
+          <div class="pilar-card">
+            <h4>Ciência</h4>
+            <p>Decisões baseadas em dados corporais reais, não em suposições.</p>
+          </div>
+          <div class="pilar-card">
+            <h4>Método</h4>
+            <p>Avaliação, planejamento e acompanhamento em cada etapa.</p>
+          </div>
+          <div class="pilar-card">
+            <h4>Individualidade</h4>
+            <p>Protocolos criados para a sua rotina, objetivo e corpo.</p>
+          </div>
+          <div class="pilar-card">
+            <h4>Resultado</h4>
+            <p>Evoluções mensuráveis com acompanhamento contínuo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right">
+        <div class="eyebrow" style="color:var(--amarelo-bg);--borda:transparent;">
+          <span style="width:22px;height:1px;background:var(--amarelo-bg);margin-right:10px;display:block;"></span>
+          O Método BioCheck
+          <span style="width:22px;height:1px;background:var(--amarelo-bg);margin-left:10px;display:block;"></span>
+        </div>
+        <h3>Avaliar primeiro. Planejar melhor. Acompanhar com inteligência.</h3>
+        <div class="metodo-steps">
+          <div class="metodo-step">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h4>Avaliação</h4>
+              <p>Bioimpedância, adipometria, teste vascular e análise corporal.</p>
+            </div>
+          </div>
+          <div class="metodo-step">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h4>Diagnóstico</h4>
+              <p>Interpretação técnica dos dados para entender o ponto de partida.</p>
+            </div>
+          </div>
+          <div class="metodo-step">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h4>Planejamento</h4>
+              <p>Treino, nutrição ou plano integrado para o seu perfil.</p>
+            </div>
+          </div>
+          <div class="metodo-step">
+            <span class="step-num">04</span>
+            <div class="step-content">
+              <h4>Acompanhamento</h4>
+              <p>Evolução monitorada, ajustes precisos, resultado sustentável.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFISSIONAIS -->
+<section id="profissionais">
+  <div class="container">
+    <div class="profissionais-header">
+      <div class="eyebrow" style="justify-content:center;">Equipe Especializada</div>
+      <h2>Por trás do seu resultado,<br>existe ciência.</h2>
+      <p>Dois profissionais com formação específica, atuando de forma integrada pelo seu objetivo.</p>
+    </div>
+    <div class="cards-grid">
+      <!-- Card Jaque -->
+      <div class="prof-card">
+        <div class="prof-photo">
+          <img src="assets/jaque.jpg" alt="Jaque — Nutricionista" onerror="this.style.display='none'; this.parentElement.querySelector('.prof-photo-placeholder').style.display='flex';">
+          <div class="prof-photo-placeholder" style="display:none;">
+            <div class="prof-photo-placeholder-inner">
+              <span>J</span>
+            </div>
+          </div>
+          <div class="prof-overlay">
+            <div class="prof-overlay-name">Jaque</div>
+            <div class="prof-overlay-role">Nutricionista · Prof. Ed. Física</div>
+          </div>
+        </div>
+        <div class="prof-card-body">
+          <div class="prof-name">Jaque</div>
+          <div class="prof-role">Nutricionista · Profissional de Educação Física</div>
+          <div class="prof-registro">CRN9 37510 &nbsp;|&nbsp; CREF 058.478 G/MG</div>
+          <p class="prof-desc">
+            Responsável pela consultoria nutricional, planejamento alimentar e acompanhamento nutricional individualizado. Transforma objetivos e rotina em estratégias alimentares que funcionam — sem radicalismos, com ciência.
+          </p>
+          <div class="prof-tags">
+            <span class="tag">Nutrição</span>
+            <span class="tag">Consultoria</span>
+            <span class="tag">Planejamento Alimentar</span>
+            <span class="tag">Acompanhamento</span>
+          </div>
+          <a href="https://wa.me/5534988775822" target="_blank" class="prof-whatsapp">
+            <div class="wsp-icon">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            (34) 98877-5822
+          </a>
+        </div>
+      </div>
+      <!-- Card Robson -->
+      <div class="prof-card">
+        <div class="prof-photo">
+          <img src="assets/robson.jpg" alt="Robson — Profissional de Educação Física" onerror="this.style.display='none'; this.parentElement.querySelector('.prof-photo-placeholder').style.display='flex';">
+          <div class="prof-photo-placeholder" style="display:none;">
+            <div class="prof-photo-placeholder-inner">
+              <span>R</span>
+            </div>
+          </div>
+          <div class="prof-overlay">
+            <div class="prof-overlay-name">Robson</div>
+            <div class="prof-overlay-role">Prof. Educação Física</div>
+          </div>
+        </div>
+        <div class="prof-card-body">
+          <div class="prof-name">Robson</div>
+          <div class="prof-role">Profissional de Educação Física</div>
+          <div class="prof-registro">CREF 018.896 G/MG</div>
+          <p class="prof-desc">
+            Responsável pela avaliação física, prescrição de treino, corrida, bike e planejamento de performance. Trabalha com dados corporais para montar estratégias precisas, individualizadas e orientadas a resultados reais.
+          </p>
+          <div class="prof-tags">
+            <span class="tag">Avaliação Física</span>
+            <span class="tag">Treino</span>
+            <span class="tag">Corrida</span>
+            <span class="tag">Bike</span>
+            <span class="tag">Performance</span>
+          </div>
+          <a href="https://wa.me/5534988858182" target="_blank" class="prof-whatsapp">
+            <div class="wsp-icon">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            (34) 98885-8182
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Equipe juntos -->
+    <div class="equipe-box">
+      <img src="assets/equipe.jpg" alt="Equipe BioCheck" onerror="this.style.display='none'; this.parentElement.querySelector('.equipe-placeholder').style.display='flex';">
+      <div class="equipe-placeholder" style="display:none;">
+        <div class="equipe-placeholder-person"></div>
+        <div class="equipe-placeholder-person"></div>
+      </div>
+      <div class="equipe-overlay">
+        <p>"Dois profissionais, uma estratégia integrada."</p>
+        <a href="#contato" class="btn btn-gold">Agendar avaliação</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="servicos-header">
+      <div class="eyebrow" style="justify-content:center;">O que oferecemos</div>
+      <h2>Protocolos feitos para você</h2>
+      <p>Cada serviço é desenvolvido para atender um objetivo específico, com acompanhamento especializado do início ao fim.</p>
+    </div>
+    <div class="servicos-grid">
+      <!-- 01 Avaliação Bio -->
+      <div class="servico-card">
+        <div class="servico-num">01</div>
+        <div class="servico-nome">Avaliação Bio</div>
+        <p class="servico-desc">Bioimpedância + análise de composição corporal + relatório interpretado com orientações técnicas.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+      <!-- 02 Avaliação Plus -->
+      <div class="servico-card">
+        <div class="servico-num">02</div>
+        <div class="servico-nome">Avaliação Plus</div>
+        <p class="servico-desc">Bioimpedância + adipometria + avaliação física completa para um diagnóstico mais detalhado da composição corporal.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+      <!-- 03 Avaliação Premium — DESTAQUE -->
+      <div class="servico-card destaque">
+        <div class="badge-destaque">Mais completa</div>
+        <div class="servico-num">03</div>
+        <div class="servico-nome">Avaliação Premium</div>
+        <p class="servico-desc">Tudo da Avaliação Plus com inclusão de teste vascular. O protocolo mais completo para entender o estado de saúde e composição corporal.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+      <!-- 04 Plano de Treino -->
+      <div class="servico-card">
+        <div class="servico-num">04</div>
+        <div class="servico-nome">Plano de Treino</div>
+        <p class="servico-desc">Periodização individual + planilha estruturada + acompanhamento contínuo com Robson para evolução progressiva.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+      <!-- 05 Treino de Corrida -->
+      <div class="servico-card">
+        <div class="servico-num">05</div>
+        <div class="servico-nome">Treino de Corrida</div>
+        <p class="servico-desc">Planilha periodizada + controle de carga + acompanhamento técnico especializado para corredores de todos os níveis.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+      <!-- 06 Consultoria Nutricional -->
+      <div class="servico-card">
+        <div class="servico-num">06</div>
+        <div class="servico-nome">Consultoria Nutricional</div>
+        <p class="servico-desc">Anamnese + plano alimentar individual + acompanhamento com Jaque. Estratégia nutricional baseada na sua rotina e objetivo.</p>
+        <a href="#contato" class="servico-link">Agendar &#8594;</a>
+      </div>
+    </div>
+    <!-- Foco Total Box -->
+    <div class="foco-total-box">
+      <div class="foco-total-content">
+        <div class="eyebrow foco-eyebrow">Plano Completo</div>
+        <h3>Foco Total</h3>
+        <p>Avaliação + Treino + Nutrição integrados. A experiência BioCheck completa, com os dois profissionais trabalhando juntos pelo seu resultado.</p>
+      </div>
+      <div class="foco-total-cta">
+        <a href="https://wa.me/5534988858182?text=Oi%2C%20tenho%20interesse%20no%20Plano%20Foco%20Total%20da%20BioCheck!" target="_blank" class="btn btn-gold">Quero o Plano Foco Total</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGIA -->
+<section id="metodologia">
+  <div class="container">
+    <div class="metodologia-header">
+      <div class="eyebrow">Nossa Abordagem</div>
+      <h2><em>Por que o método importa</em></h2>
+      <p>Cada decisão tem base científica. Cada protocolo tem começo, meio e acompanhamento. Nada é genérico.</p>
+    </div>
+    <div class="metodologia-grid">
+      <div class="metod-item">
+        <div class="metod-circle"><span>1</span></div>
+        <h3>Dados antes de decisões</h3>
+        <p>Avaliação completa antes de qualquer prescrição. Entendemos o corpo antes de exigir resultado dele.</p>
+      </div>
+      <div class="metod-item">
+        <div class="metod-circle"><span>2</span></div>
+        <h3>Planejamento individualizado</h3>
+        <p>Protocolos construídos para a sua realidade — rotina, objetivo, limitações e potencial.</p>
+      </div>
+      <div class="metod-item">
+        <div class="metod-circle"><span>3</span></div>
+        <h3>Abordagem integrada</h3>
+        <p>Treino e nutrição trabalhando juntos. Dois profissionais, uma estratégia coerente.</p>
+      </div>
+      <div class="metod-item">
+        <div class="metod-circle"><span>4</span></div>
+        <h3>Evolução mensurável</h3>
+        <p>Acompanhamento contínuo, reavaliações periódicas e ajustes precisos para manter a evolução.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <div class="instagram-header">
+      <div class="instagram-header-left">
+        <div class="eyebrow">Redes Sociais</div>
+        <h2>Acompanhe a BioCheck<br>no Instagram</h2>
+        <div class="instagram-handle">
+          Siga em
+          <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener">@biocheck.86</a>
+          para conteúdo sobre avaliação, treino e nutrição.
+        </div>
+      </div>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="btn btn-outline">Ver perfil</a>
+    </div>
+    <div class="instagram-grid">
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-1">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.6);">Avaliação</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-2">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.7);">Nutrição</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-3">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(27,42,74,0.35);">Treino</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-4">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.6);">Corrida</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-5">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(27,42,74,0.35);">Performance</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="insta-post">
+        <div class="insta-post-inner insta-bg-6">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.7);">Saúde</div>
+          </div>
+        </div>
+        <div class="insta-overlay"><span class="insta-overlay-icon">+</span></div>
+      </a>
+    </div>
+    <div class="instagram-footer">
+      <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" class="btn btn-primary">Ver todos os posts no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="blog-header">
+      <div class="blog-header-left">
+        <div class="eyebrow">Conteúdo</div>
+        <h2>Saúde com informação<br>de qualidade</h2>
+        <p>Artigos baseados em ciência, escritos por quem pratica.</p>
+      </div>
+      <a href="blog/index.html" class="btn btn-outline">Ver todos os artigos</a>
+    </div>
+    <div class="blog-grid">
+      <a href="blog/bioimpedancia-o-que-os-numeros-dizem.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder insta-bg-1">
+            <div class="blog-card-img-placeholder-inner">
+              <p>Bioimpedância e<br>composição corporal</p>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Avaliação</div>
+          <div class="blog-card-title">Bioimpedância: o que os números realmente dizem sobre o seu corpo</div>
+          <p class="blog-card-excerpt">Entenda como interpretar os dados da bioimpedância e por que a composição corporal vai muito além do peso na balança.</p>
+          <div class="blog-card-meta">
+            <span>8 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+      <a href="blog/por-que-dieta-generica-nao-funciona.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder insta-bg-2">
+            <div class="blog-card-img-placeholder-inner">
+              <p>Nutrição individualizada<br>e estratégica</p>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Nutrição</div>
+          <div class="blog-card-title">Por que dieta genérica não funciona — e o que fazer diferente</div>
+          <p class="blog-card-excerpt">O que funciona para um pode não funcionar para outro. Entenda por que a individualização alimentar é inegociável para o resultado.</p>
+          <div class="blog-card-meta">
+            <span>6 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+      <a href="blog/treino-de-corrida-com-metodo.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder insta-bg-4">
+            <div class="blog-card-img-placeholder-inner">
+              <p>Corrida técnica<br>e periodizada</p>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Corrida</div>
+          <div class="blog-card-title">Treino de corrida com método: como evoluir sem se machucar</div>
+          <p class="blog-card-excerpt">Treinar corrida sem planejamento é o caminho mais rápido para a lesão. Saiba como a periodização protege e acelera sua evolução.</p>
+          <div class="blog-card-meta">
+            <span>7 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-grid">
+      <div class="contato-left">
+        <div class="eyebrow">Entre em Contato</div>
+        <h2>Pronto para começar com método?</h2>
+        <p>Escolha um serviço, fale com a gente pelo WhatsApp ou preencha o formulário. Nosso time retorna em breve para agendar.</p>
+        <div class="contato-info">
+          <div class="contato-info-item">
+            <div class="contato-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contato-info-text">
+              <strong>Localização</strong>
+              <span>Araxá · Minas Gerais</span>
+            </div>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.78 19.79 19.79 0 010 5.18 2 2 0 011.98 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 10.9a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contato-info-text">
+              <strong>Robson — Avaliação e Treino</strong>
+              <span>(34) 98885-8182</span>
+            </div>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.78 19.79 19.79 0 010 5.18 2 2 0 011.98 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 10.9a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contato-info-text">
+              <strong>Jaque — Nutrição</strong>
+              <span>(34) 98877-5822</span>
+            </div>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div class="contato-info-text">
+              <strong>Instagram</strong>
+              <span><a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener" style="color:var(--amarelo);">@biocheck.86</a></span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/5534988858182" target="_blank" class="btn btn-whatsapp">
+          <svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="contato-right">
+        <h3>Agendar pelo formulário</h3>
+        <p class="form-subtitle">Preencha abaixo e sua mensagem será enviada diretamente pelo WhatsApp.</p>
+        <form id="contatoForm">
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(34) 9 0000-0000" required>
+            </div>
+            <div class="form-group">
+              <label for="servico">Serviço de interesse</label>
+              <select id="servico" name="servico" required>
+                <option value="">Selecione...</option>
+                <option value="Avaliação Bio">Avaliação Bio</option>
+                <option value="Avaliação Plus">Avaliação Plus</option>
+                <option value="Avaliação Premium">Avaliação Premium</option>
+                <option value="Plano de Treino">Plano de Treino</option>
+                <option value="Treino de Corrida">Treino de Corrida</option>
+                <option value="Consultoria Nutricional">Consultoria Nutricional</option>
+                <option value="Plano Foco Total">Plano Foco Total</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre seu objetivo..."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Enviar pelo WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-placeholder">
+            <div class="logo-mark">BC</div>
+            <span class="logo-text">BioCheck</span>
+          </div>
+        </div>
+        <p>Centro especializado em avaliação física, nutrição e treino em Araxá-MG. Resultado não é sorte. É método.</p>
+        <div class="footer-social">
+          Instagram:
+          <a href="https://www.instagram.com/biocheck.86" target="_blank" rel="noopener">@biocheck.86</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul class="footer-links">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#profissionais">Equipe</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#metodologia">Método</a></li>
+          <li><a href="#instagram">Instagram</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <strong>Localização</strong>
+            Araxá · Minas Gerais
+          </li>
+          <li>
+            <strong>Robson — Avaliação e Treino</strong>
+            <a href="https://wa.me/5534988858182" target="_blank" style="color:rgba(255,255,255,0.55)">(34) 98885-8182</a>
+          </li>
+          <li>
+            <strong>Jaque — Nutrição</strong>
+            <a href="https://wa.me/5534988775822" target="_blank" style="color:rgba(255,255,255,0.55)">(34) 98877-5822</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; 2026 BioCheck · Todos os direitos reservados · Araxá, MG
+      </div>
+      <div class="footer-cregs">
+        CREF 018.896 G/MG (Robson) &nbsp;|&nbsp; CRN9 37510 · CREF 058.478 G/MG (Jaque)
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5534988858182" target="_blank" rel="noopener" class="wsp-float" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Menu hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Scroll suave para âncoras
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 70;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Formulário → WhatsApp
+  document.getElementById('contatoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nome    = document.getElementById('nome').value.trim();
+    const tel     = document.getElementById('telefone').value.trim();
+    const servico = document.getElementById('servico').value;
+    const msg     = document.getElementById('mensagem').value.trim();
+
+    if (!nome || !tel || !servico) return;
+
+    let texto = `Olá! Meu nome é *${nome}*.\n`;
+    texto += `Tenho interesse no serviço: *${servico}*.\n`;
+    texto += `Meu telefone: ${tel}.`;
+    if (msg) texto += `\n\n${msg}`;
+
+    const url = `https://wa.me/5534988858182?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  });
+</script>
+</body>
+</html>

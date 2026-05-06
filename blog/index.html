@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog BioCheck — Saúde com informação de qualidade</title>
+  <meta name="description" content="Artigos sobre avaliação física, nutrição, treino e performance escritos pelos profissionais da BioCheck em Araxá-MG.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul:       #1B2A4A;
+      --azul-mid:   #2A3F6B;
+      --amarelo:    #D4A017;
+      --amarelo-bg: #F5D87A;
+      --cinza-bg:   #EDECEB;
+      --cinza-card: #E2E1DF;
+      --cinza-text: #6B6B6B;
+      --branco:     #FAFAF8;
+      --borda:      rgba(27,42,74,0.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background-color: var(--cinza-bg);
+      color: var(--azul);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-primary { background: var(--azul); color: var(--branco); }
+    .btn-primary:hover { background: var(--azul-mid); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--azul);
+      color: var(--azul);
+    }
+    .btn-outline:hover { background: var(--azul); color: var(--branco); }
+    .btn-outline-white {
+      background: transparent;
+      border: 1.5px solid rgba(250,250,248,0.4);
+      color: var(--branco);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      font-weight: 500;
+    }
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--amarelo);
+    }
+    .eyebrow::before { margin-right: 10px; }
+    .eyebrow::after  { margin-left: 10px; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* NAV */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(237,236,235,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo-placeholder {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo-placeholder .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--azul);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amarelo);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em;
+    }
+    .nav-logo-placeholder .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500;
+      color: var(--azul); letter-spacing: 0.08em;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-back {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cinza-text);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--azul); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--azul); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      background: var(--cinza-bg);
+      border-top: 1px solid var(--borda);
+      padding: 1.5rem 2rem 2rem;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; padding: 0.7rem 0;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--azul); border-bottom: 1px solid var(--borda);
+    }
+    .mobile-menu a:last-child { border-bottom: none; margin-top: 1rem; }
+
+    /* HERO BLOG */
+    .blog-hero {
+      padding-top: 70px;
+      background: var(--azul);
+      padding-bottom: 5rem;
+    }
+    .blog-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 0;
+    }
+    .blog-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amarelo-bg);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .blog-hero-eyebrow::before, .blog-hero-eyebrow::after {
+      content: ''; display: block; width: 22px; height: 1px; background: var(--amarelo-bg);
+    }
+    .blog-hero-eyebrow::before { margin-right: 10px; }
+    .blog-hero-eyebrow::after  { margin-left: 10px; }
+    .blog-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      color: var(--branco);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .blog-hero h1 em { font-style: italic; color: var(--amarelo-bg); }
+    .blog-hero p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* FILTROS + BUSCA */
+    .blog-controls {
+      background: var(--branco);
+      border-bottom: 1px solid var(--borda);
+      position: sticky;
+      top: 70px;
+      z-index: 50;
+    }
+    .blog-controls-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      min-height: 64px;
+    }
+    .filtros {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      padding: 0.8rem 0;
+    }
+    .filtro-btn {
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--borda);
+      background: transparent;
+      color: var(--cinza-text);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .filtro-btn:hover { border-color: var(--azul); color: var(--azul); }
+    .filtro-btn.ativo { background: var(--azul); color: var(--branco); border-color: var(--azul); }
+    .busca-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #busca {
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--borda);
+      border-radius: 4px;
+      background: var(--cinza-bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--azul);
+      outline: none;
+      width: 220px;
+      transition: border-color 0.2s;
+    }
+    #busca:focus { border-color: var(--azul); }
+    .contagem {
+      font-size: 0.72rem;
+      color: var(--cinza-text);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    /* GRID ARTIGOS */
+    .blog-main {
+      padding: 4rem 0 7rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .blog-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--branco);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .blog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(27,42,74,0.09); }
+    .blog-card.hidden { display: none; }
+    .blog-card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+    .blog-card-img-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .blog-card-img-inner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: rgba(255,255,255,0.55); text-align: center; padding: 1rem;
+      line-height: 1.5;
+    }
+    .blog-card-img-inner p.dark { color: rgba(27,42,74,0.35); }
+    .bg-1 { background: linear-gradient(135deg, #1B2A4A 0%, #2A3F6B 100%); }
+    .bg-2 { background: linear-gradient(135deg, #D4A017 0%, #b8891a 100%); }
+    .bg-3 { background: linear-gradient(135deg, #E2E1DF 0%, #ccc 100%); }
+    .bg-4 { background: linear-gradient(135deg, #2A3F6B 0%, #1B2A4A 100%); }
+    .bg-5 { background: linear-gradient(135deg, #EDECEB 0%, #d5d4d2 100%); }
+    .blog-card-body { padding: 1.8rem; }
+    .blog-cat {
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amarelo); margin-bottom: 0.8rem;
+    }
+    .blog-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 500;
+      color: var(--azul); line-height: 1.35; margin-bottom: 0.8rem;
+    }
+    .blog-card-excerpt {
+      font-size: 0.82rem; color: var(--cinza-text);
+      line-height: 1.65; margin-bottom: 1.2rem;
+    }
+    .blog-card-meta {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem; border-top: 1px solid var(--borda);
+    }
+    .blog-card-meta span { font-size: 0.72rem; color: var(--cinza-text); }
+    .blog-card-link {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--azul); display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .blog-card-link:hover { gap: 0.7rem; color: var(--amarelo); }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 0;
+      display: none;
+    }
+    .no-results p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--cinza-text);
+    }
+
+    /* FOOTER MINI */
+    .footer-mini {
+      background: var(--azul);
+      padding: 2rem 0;
+    }
+    .footer-mini-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-mini-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-mini-brand .logo-mark {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.1); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amarelo-bg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600;
+    }
+    .footer-mini-brand .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500;
+      color: var(--branco); letter-spacing: 0.08em;
+    }
+    .footer-mini p {
+      font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em;
+    }
+
+    /* WHATSAPP FLOAT */
+    .wsp-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      background: #25D366; width: 56px; height: 56px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wsp-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
+    .wsp-float svg { width: 26px; height: 26px; fill: white; }
+
+    @media (max-width: 960px) {
+      .nav-right .btn { display: none; }
+      .nav-right .nav-back { display: none; }
+      .hamburger { display: flex; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-controls-inner { flex-direction: column; align-items: flex-start; gap: 0; }
+      .busca-wrap { width: 100%; padding-bottom: 0.8rem; }
+      #busca { width: 100%; }
+      .footer-mini-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 1.2rem; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-placeholder">
+        <div class="logo-mark">BC</div>
+        <span class="logo-text">BioCheck</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-back">&#8592; Voltar ao site</a>
+      <a href="../index.html#contato" class="btn btn-primary">Agendar</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Voltar ao site</a>
+    <a href="../index.html#contato" class="btn btn-primary">Agendar</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <div class="blog-hero-eyebrow">Conteúdo BioCheck</div>
+    <h1>Saúde com<br><em>informação de qualidade.</em></h1>
+    <p>Artigos sobre avaliação física, nutrição, treino e performance. Escritos por quem pratica, baseados em ciência.</p>
+  </div>
+</section>
+
+<!-- CONTROLES -->
+<div class="blog-controls">
+  <div class="blog-controls-inner">
+    <div class="filtros">
+      <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+      <button class="filtro-btn" data-filtro="Avaliação">Avaliação</button>
+      <button class="filtro-btn" data-filtro="Nutrição">Nutrição</button>
+      <button class="filtro-btn" data-filtro="Treino">Treino</button>
+      <button class="filtro-btn" data-filtro="Corrida">Corrida</button>
+      <button class="filtro-btn" data-filtro="Saúde">Saúde</button>
+      <button class="filtro-btn" data-filtro="Performance">Performance</button>
+    </div>
+    <div class="busca-wrap">
+      <input type="text" id="busca" placeholder="Buscar artigos...">
+      <span class="contagem" id="contagem">3 artigos</span>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<main class="blog-main">
+  <div class="container">
+    <div class="blog-grid" id="blogGrid">
+
+      <a href="bioimpedancia-o-que-os-numeros-dizem.html" class="blog-card" data-categoria="Avaliação" data-titulo="Bioimpedância o que os números realmente dizem sobre o seu corpo">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner bg-1">
+            <p>Bioimpedância e composição corporal</p>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Avaliação</div>
+          <div class="blog-card-title">Bioimpedância: o que os números realmente dizem sobre o seu corpo</div>
+          <p class="blog-card-excerpt">Entenda como interpretar os dados da bioimpedância e por que a composição corporal vai muito além do peso na balança.</p>
+          <div class="blog-card-meta">
+            <span>8 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="por-que-dieta-generica-nao-funciona.html" class="blog-card" data-categoria="Nutrição" data-titulo="Por que dieta genérica não funciona e o que fazer diferente">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner bg-2">
+            <p>Nutrição individualizada e estratégica</p>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Nutrição</div>
+          <div class="blog-card-title">Por que dieta genérica não funciona — e o que fazer diferente</div>
+          <p class="blog-card-excerpt">O que funciona para um pode não funcionar para outro. Entenda por que a individualização alimentar é inegociável para o resultado.</p>
+          <div class="blog-card-meta">
+            <span>6 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="treino-de-corrida-com-metodo.html" class="blog-card" data-categoria="Corrida" data-titulo="Treino de corrida com método como evoluir sem se machucar">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner bg-4">
+            <p>Corrida técnica e periodizada</p>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Corrida</div>
+          <div class="blog-card-title">Treino de corrida com método: como evoluir sem se machucar</div>
+          <p class="blog-card-excerpt">Treinar corrida sem planejamento é o caminho mais rápido para a lesão. Saiba como a periodização protege e acelera sua evolução.</p>
+          <div class="blog-card-meta">
+            <span>7 min de leitura</span>
+            <span class="blog-card-link">Ler artigo &#8594;</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="no-results" id="noResults">
+        <p>Nenhum artigo encontrado com esse filtro.</p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER MINI -->
+<footer class="footer-mini">
+  <div class="footer-mini-inner">
+    <a href="../index.html" class="footer-mini-brand">
+      <div class="logo-mark">BC</div>
+      <span class="logo-text">BioCheck</span>
+    </a>
+    <p>&copy; 2026 BioCheck · Araxá, MG</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5534988858182" target="_blank" rel="noopener" class="wsp-float" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Filtro + Busca
+  const cards = Array.from(document.querySelectorAll('.blog-card[data-categoria]'));
+  const filtros = document.querySelectorAll('.filtro-btn');
+  const buscaInput = document.getElementById('busca');
+  const contagem = document.getElementById('contagem');
+  const noResults = document.getElementById('noResults');
+  let categoriaAtiva = 'todos';
+
+  function atualizar() {
+    const termo = buscaInput.value.toLowerCase().trim();
+    let visíveis = 0;
+    cards.forEach(card => {
+      const cat = card.dataset.categoria;
+      const titulo = card.dataset.titulo.toLowerCase();
+      const catOk = categoriaAtiva === 'todos' || cat === categoriaAtiva;
+      const termoOk = !termo || titulo.includes(termo);
+      if (catOk && termoOk) {
+        card.classList.remove('hidden');
+        visíveis++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    contagem.textContent = visíveis + (visíveis === 1 ? ' artigo' : ' artigos');
+    noResults.style.display = visíveis === 0 ? 'block' : 'none';
+  }
+
+  filtros.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtros.forEach(b => b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      categoriaAtiva = btn.dataset.filtro;
+      atualizar();
+    });
+  });
+
+  buscaInput.addEventListener('input', atualizar);
+  atualizar();
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Por que dieta genérica não funciona — BioCheck</title>
+  <meta name="description" content="O que funciona para um pode não funcionar para outro. Entenda por que a individualização alimentar é inegociável para o resultado.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul:       #1B2A4A;
+      --azul-mid:   #2A3F6B;
+      --amarelo:    #D4A017;
+      --amarelo-bg: #F5D87A;
+      --cinza-bg:   #EDECEB;
+      --cinza-card: #E2E1DF;
+      --cinza-text: #6B6B6B;
+      --branco:     #FAFAF8;
+      --borda:      rgba(27,42,74,0.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif; font-weight: 400;
+      background-color: var(--cinza-bg); color: var(--azul);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    .btn {
+      display: inline-block; padding: 0.85rem 2.2rem; border-radius: 4px;
+      font-size: 0.76rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; border: none;
+    }
+    .btn-primary { background: var(--azul); color: var(--branco); }
+    .btn-primary:hover { background: var(--azul-mid); }
+    .btn-gold { background: var(--amarelo); color: var(--branco); }
+    .btn-gold:hover { background: #b8891a; }
+
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(237,236,235,0.92); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--borda);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    }
+    .nav-logo-placeholder { height: 46px; display: flex; align-items: center; gap: 10px; }
+    .nav-logo-placeholder .logo-mark {
+      width: 36px; height: 36px; background: var(--azul); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center; color: var(--amarelo);
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600;
+    }
+    .nav-logo-placeholder .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500; color: var(--azul); letter-spacing: 0.08em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-back { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cinza-text); transition: color 0.2s; }
+    .nav-back:hover { color: var(--azul); }
+
+    .article-hero { padding-top: 70px; background: var(--azul); }
+    .article-hero-inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--amarelo-bg); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .article-cat span { color: rgba(255,255,255,0.3); }
+    .article-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300;
+      color: var(--branco); line-height: 1.15; margin-bottom: 1.2rem; max-width: 800px;
+    }
+    .article-hero .subtitle {
+      font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
+    }
+    .article-meta-item { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+    .article-meta-item strong { color: rgba(255,255,255,0.7); display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+
+    .article-layout {
+      max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 7rem;
+      display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start;
+    }
+    .article-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; color: var(--azul); margin: 2.5rem 0 1rem; line-height: 1.3;
+    }
+    .article-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500; color: var(--azul); margin: 2rem 0 0.8rem;
+    }
+    .article-content p {
+      font-size: 0.95rem; color: var(--cinza-text); line-height: 1.85; margin-bottom: 1.3rem;
+    }
+    .article-content ul { margin: 0 0 1.3rem 1.2rem; list-style: disc; }
+    .article-content ul li {
+      font-size: 0.95rem; color: var(--cinza-text); line-height: 1.75; margin-bottom: 0.4rem;
+    }
+    .article-content blockquote {
+      border-left: 3px solid var(--amarelo); padding: 1rem 1.5rem;
+      background: var(--cinza-card); border-radius: 0 8px 8px 0; margin: 2rem 0;
+    }
+    .article-content blockquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic; font-weight: 400;
+      color: var(--azul); margin: 0; line-height: 1.6;
+    }
+    .article-content .highlight-box {
+      background: var(--azul); border-radius: 12px; padding: 2rem; margin: 2rem 0;
+    }
+    .article-content .highlight-box p { color: rgba(255,255,255,0.7); margin: 0; }
+    .article-content .highlight-box h3 { color: var(--amarelo-bg); margin-bottom: 0.8rem; margin-top: 0; }
+    .article-cta {
+      background: var(--cinza-card); border-radius: 12px;
+      padding: 2.5rem; margin-top: 3rem; text-align: center; border: 1px solid var(--borda);
+    }
+    .article-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--azul); margin-bottom: 0.8rem; }
+    .article-cta p { font-size: 0.88rem; color: var(--cinza-text); margin-bottom: 1.5rem; line-height: 1.6; }
+
+    .sidebar { position: sticky; top: 90px; }
+    .sidebar-card { background: var(--branco); border: 1px solid var(--borda); border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem; }
+    .sidebar-card h4 { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cinza-text); margin-bottom: 1.2rem; }
+    .sidebar-toc { display: flex; flex-direction: column; gap: 0.6rem; }
+    .sidebar-toc a { font-size: 0.83rem; color: var(--cinza-text); padding-left: 0.8rem; border-left: 2px solid var(--borda); transition: color 0.2s, border-color 0.2s; line-height: 1.4; }
+    .sidebar-toc a:hover { color: var(--azul); border-left-color: var(--amarelo); }
+    .sidebar-autor-nome { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--azul); }
+    .sidebar-autor-cargo { font-size: 0.7rem; color: var(--amarelo); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .sidebar-autor-reg { font-size: 0.72rem; color: var(--cinza-text); margin-bottom: 0.8rem; }
+    .sidebar-cta-card { background: var(--azul); border-radius: 12px; padding: 1.8rem; }
+    .sidebar-cta-card p { font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 1.2rem; }
+    .sidebar-cta-card .btn { width: 100%; text-align: center; display: block; }
+
+    .relacionados { max-width: 1200px; margin: 0 auto; padding: 0 2rem 7rem; }
+    .relacionados h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--azul); margin-bottom: 2rem; }
+    .relacionados-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .rel-card { background: var(--branco); border: 1px solid var(--borda); border-radius: 12px; overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
+    .rel-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(27,42,74,0.09); }
+    .rel-card-img { height: 140px; }
+    .rel-card-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .rel-card-img-inner p { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: rgba(255,255,255,0.55); text-align: center; padding: 1rem; }
+    .rel-card-body { padding: 1.4rem; }
+    .rel-cat { font-size: 0.63rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amarelo); margin-bottom: 0.6rem; }
+    .rel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--azul); line-height: 1.35; }
+
+    .footer-mini { background: var(--azul); padding: 2rem 0; }
+    .footer-mini-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-mini-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-mini-brand .logo-mark { width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--amarelo-bg); font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; }
+    .footer-mini-brand .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--branco); letter-spacing: 0.08em; }
+    .footer-mini p { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+    .wsp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 99; background: #25D366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s; }
+    .wsp-float:hover { transform: scale(1.08); }
+    .wsp-float svg { width: 26px; height: 26px; fill: white; }
+    .bg-1 { background: linear-gradient(135deg, #1B2A4A 0%, #2A3F6B 100%); }
+    .bg-2 { background: linear-gradient(135deg, #D4A017 0%, #b8891a 100%); }
+    .bg-4 { background: linear-gradient(135deg, #2A3F6B 0%, #1B2A4A 100%); }
+
+    @media (max-width: 960px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .relacionados-grid { grid-template-columns: 1fr; }
+      .footer-mini-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .article-layout { padding: 2rem 1.2rem 5rem; }
+      .relacionados { padding: 0 1.2rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-inner">
+    <a href="../index.html">
+      <div class="nav-logo-placeholder">
+        <div class="logo-mark">BC</div>
+        <span class="logo-text">BioCheck</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">&#8592; Ver todos os artigos</a>
+      <a href="../index.html#contato" class="btn btn-primary">Agendar</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat">
+      <a href="index.html" style="color:rgba(255,255,255,0.4);">Blog</a>
+      <span>/</span>
+      Nutrição
+    </div>
+    <h1>Por que dieta genérica não funciona — e o que fazer diferente</h1>
+    <p class="subtitle">O que funciona para um pode não funcionar para outro. Entenda por que a individualização alimentar é inegociável para o resultado.</p>
+    <div class="article-meta">
+      <div class="article-meta-item"><strong>Autora</strong>Jaque — CRN9 37510 | CREF 058.478 G/MG</div>
+      <div class="article-meta-item"><strong>Categoria</strong>Nutrição</div>
+      <div class="article-meta-item"><strong>Tempo de leitura</strong>6 minutos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO + SIDEBAR -->
+<div class="article-layout">
+  <article class="article-content">
+
+    <h2 id="o-problema">O problema com a dieta do momento</h2>
+    <p>A internet está cheia de dietas. A low carb, o jejum intermitente, a dieta cetogênica, o veganismo, a dieta do mediterrâneo — todas prometem resultados, todas têm testemunhos reais de pessoas que emagreceram ou melhoraram a saúde. E sabe de uma coisa? Muitas dessas dietas funcionam. Mas não para todo mundo, e não em qualquer contexto.</p>
+    <p>O problema não é a dieta em si. O problema é a generalização. Tomar um padrão alimentar que funcionou para uma pessoa específica, com histórico de saúde específico, com rotina específica, e aplicar indiscriminadamente para qualquer um — isso é a raiz do fracasso de grande parte das tentativas de mudança alimentar.</p>
+
+    <blockquote>
+      <p>"Nutrição não é restrição. É estratégia. E estratégia precisa ser construída para a realidade de cada pessoa."</p>
+    </blockquote>
+
+    <h2 id="por-que-nao-funciona">Por que a mesma dieta produz resultados diferentes?</h2>
+    <p>Existem razões biológicas, metabólicas e práticas que explicam essa variação. Algumas das mais relevantes:</p>
+
+    <h3>Taxa metabólica individual</h3>
+    <p>Duas pessoas com o mesmo peso e altura podem ter taxas metabólicas basais com diferença de 200 a 300 kcal por dia. Aplicar o mesmo plano calórico para ambas vai gerar resultados completamente diferentes — uma vai estagnar, a outra vai perder massa muscular, e nenhuma estará no caminho ideal.</p>
+
+    <h3>Composição corporal atual</h3>
+    <p>Uma pessoa com 40% de gordura corporal tem necessidades metabólicas e estratégias nutricionais completamente diferentes de alguém com 20%. O percentual de massa magra interfere diretamente na distribuição de macronutrientes, na ingestão proteica necessária e no deficit calórico adequado.</p>
+
+    <h3>Nível e tipo de atividade física</h3>
+    <p>Quem treina musculação 4 vezes por semana tem demandas nutricionais radicalmente diferentes de quem faz caminhada 3 vezes por semana. A periodização nutricional precisa acompanhar a periodização do treino — e uma dieta genérica não faz isso.</p>
+
+    <h3>Rotina e contexto de vida</h3>
+    <p>Um plano alimentar que ignora a rotina de trabalho, os horários disponíveis, as preferências e aversões alimentares, os comprometimentos sociais — esse plano tem vida curta. Adesão é parte fundamental do resultado. Se a pessoa não consegue seguir, os melhores macros do mundo não servem para nada.</p>
+
+    <h3>Histórico de saúde e relação com comida</h3>
+    <p>Alterações hormonais, resistência à insulina, histórico de transtornos alimentares, relacionamento emocional com a comida — todos esses fatores precisam ser considerados na montagem de qualquer estratégia nutricional séria.</p>
+
+    <div class="highlight-box">
+      <h3>O que a anamnese nutricional revela</h3>
+      <p>Na BioCheck, antes de qualquer plano alimentar, Jaque realiza uma anamnese detalhada: histórico de saúde e alimentar, exames laboratoriais, rotina, preferências, objetivos, relação com a comida. São essas informações que tornam possível um plano que funciona — não no papel, mas na vida real da pessoa.</p>
+    </div>
+
+    <h2 id="sinais">Sinais de que a dieta não está certa para você</h2>
+    <p>Existem alguns sinais bastante claros de que a estratégia nutricional em uso não está adequada para o seu perfil:</p>
+    <ul>
+      <li>Dificuldade extrema de adesão — a sensação de que você está "fugindo" da dieta constantemente</li>
+      <li>Perda de desempenho físico no treino, cansaço excessivo ou piora do rendimento</li>
+      <li>Queda de cabelo, alterações de humor ou distúrbios do sono relacionados à alimentação</li>
+      <li>Emagrecimento sem melhora da composição corporal (perda de músculo junto com gordura)</li>
+      <li>Platô após algumas semanas sem possibilidade de ajuste</li>
+      <li>Sensação de restrição tão severa que gera compulsão nos fins de semana</li>
+    </ul>
+
+    <h2 id="individualizacao">O que significa individualizar a alimentação de verdade</h2>
+    <p>Individualizar não significa simplesmente calcular as calorias pelo peso da pessoa. Significa construir uma estratégia alimentar que considera:</p>
+    <ul>
+      <li>Dados de composição corporal (bioimpedância, adipometria)</li>
+      <li>Taxa metabólica basal real, não estimada por fórmulas genéricas</li>
+      <li>Carga e tipo de exercício praticado</li>
+      <li>Horários de alimentação viáveis dentro da rotina</li>
+      <li>Preferências alimentares e restrições (intolerâncias, alergias, escolhas)</li>
+      <li>Objetivos claros e prazo realista</li>
+      <li>Acompanhamento regular para ajustes conforme a evolução</li>
+    </ul>
+    <p>Isso é o que a Consultoria Nutricional da BioCheck entrega. Não uma planilha pronta. Uma estratégia construída para a sua realidade, com acompanhamento de Jaque ao longo do processo.</p>
+
+    <h2 id="acompanhamento">Por que o acompanhamento é parte do resultado</h2>
+    <p>Resultados nutricionais não são lineares. O corpo adapta. O metabolismo ajusta. A rotina muda. Por isso, qualquer plano alimentar que não inclua revisões periódicas vai inevitavelmente ficar desatualizado em relação às necessidades da pessoa.</p>
+    <p>O acompanhamento nutricional da BioCheck inclui reavaliações regulares de composição corporal, ajustes no plano conforme a evolução e suporte contínuo para dúvidas e adaptações. Não é um serviço de "receita e tchau" — é uma parceria de longo prazo com o objetivo de construir saúde real e sustentável.</p>
+
+    <blockquote>
+      <p>"Seu corpo não precisa de tentativa. Precisa de direção. E direção começa com uma avaliação completa."</p>
+    </blockquote>
+
+    <div class="article-cta">
+      <h3>Pronto para uma estratégia alimentar que funciona para você?</h3>
+      <p>Agende uma consultoria nutricional com Jaque e tenha um plano alimentar construído para a sua composição corporal, rotina e objetivo real.</p>
+      <a href="https://wa.me/5534988775822?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20agendar%20uma%20consultoria%20nutricional." target="_blank" class="btn btn-primary">Agendar consultoria nutricional</a>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Neste artigo</h4>
+      <nav class="sidebar-toc">
+        <a href="#o-problema">O problema com a dieta do momento</a>
+        <a href="#por-que-nao-funciona">Por que a mesma dieta produz resultados diferentes</a>
+        <a href="#sinais">Sinais de que a dieta não está certa</a>
+        <a href="#individualizacao">O que significa individualizar</a>
+        <a href="#acompanhamento">Por que o acompanhamento importa</a>
+      </nav>
+    </div>
+    <div class="sidebar-card">
+      <h4>Autora</h4>
+      <div class="sidebar-autor-nome">Jaque</div>
+      <div class="sidebar-autor-cargo">Nutricionista · Prof. Ed. Física</div>
+      <div class="sidebar-autor-reg">CRN9 37510 | CREF 058.478 G/MG</div>
+      <p style="font-size:0.82rem;color:var(--cinza-text);line-height:1.6;">Especialista em consultoria nutricional e planejamento alimentar individualizado. Atua na BioCheck com foco em estratégias nutricionais baseadas em dados corporais e rotina real.</p>
+    </div>
+    <div class="sidebar-cta-card">
+      <p>Nutrição que funciona começa com uma avaliação completa da sua composição corporal.</p>
+      <a href="../index.html#contato" class="btn btn-gold">Agendar agora</a>
+    </div>
+  </aside>
+</div>
+
+<!-- RELACIONADOS -->
+<section class="relacionados">
+  <h2>Artigos relacionados</h2>
+  <div class="relacionados-grid">
+    <a href="bioimpedancia-o-que-os-numeros-dizem.html" class="rel-card">
+      <div class="rel-card-img">
+        <div class="rel-card-img-inner bg-1">
+          <p>Bioimpedância e composição corporal</p>
+        </div>
+      </div>
+      <div class="rel-card-body">
+        <div class="rel-cat">Avaliação</div>
+        <div class="rel-title">Bioimpedância: o que os números realmente dizem sobre o seu corpo</div>
+      </div>
+    </a>
+    <a href="treino-de-corrida-com-metodo.html" class="rel-card">
+      <div class="rel-card-img">
+        <div class="rel-card-img-inner bg-4">
+          <p>Corrida com método</p>
+        </div>
+      </div>
+      <div class="rel-card-body">
+        <div class="rel-cat">Corrida</div>
+        <div class="rel-title">Treino de corrida com método: como evoluir sem se machucar</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER MINI -->
+<footer class="footer-mini">
+  <div class="footer-mini-inner">
+    <a href="../index.html" class="footer-mini-brand">
+      <div class="logo-mark">BC</div>
+      <span class="logo-text">BioCheck</span>
+    </a>
+    <p>&copy; 2026 BioCheck · Araxá, MG</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5534988775822" target="_blank" rel="noopener" class="wsp-float">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
