@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bioimpedância: o que os números realmente dizem sobre o seu corpo — BioCheck</title>
+  <meta name="description" content="Entenda como interpretar os dados da bioimpedância e por que a composição corporal vai muito além do peso na balança.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul:       #1B2A4A;
+      --azul-mid:   #2A3F6B;
+      --amarelo:    #D4A017;
+      --amarelo-bg: #F5D87A;
+      --cinza-bg:   #EDECEB;
+      --cinza-card: #E2E1DF;
+      --cinza-text: #6B6B6B;
+      --branco:     #FAFAF8;
+      --borda:      rgba(27,42,74,0.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background-color: var(--cinza-bg);
+      color: var(--azul);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 4px;
+      font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: all 0.2s; border: none;
+    }
+    .btn-primary { background: var(--azul); color: var(--branco); }
+    .btn-primary:hover { background: var(--azul-mid); }
+    .btn-gold { background: var(--amarelo); color: var(--branco); }
+    .btn-gold:hover { background: #b8891a; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(237,236,235,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    }
+    .nav-logo-placeholder {
+      height: 46px; display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-placeholder .logo-mark {
+      width: 36px; height: 36px; background: var(--azul); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amarelo);
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600;
+    }
+    .nav-logo-placeholder .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500; color: var(--azul); letter-spacing: 0.08em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-back { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cinza-text); transition: color 0.2s; }
+    .nav-back:hover { color: var(--azul); }
+
+    /* ARTICLE HERO */
+    .article-hero {
+      padding-top: 70px;
+      background: var(--azul);
+    }
+    .article-hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem;
+    }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--amarelo-bg); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .article-cat span { color: rgba(255,255,255,0.3); }
+    .article-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300;
+      color: var(--branco); line-height: 1.15; margin-bottom: 1.2rem;
+      max-width: 800px;
+    }
+    .article-hero .subtitle {
+      font-size: 1rem; color: rgba(255,255,255,0.6);
+      max-width: 620px; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
+    }
+    .article-meta-item { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; }
+    .article-meta-item strong { color: rgba(255,255,255,0.7); display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+
+    /* LAYOUT ARTIGO */
+    .article-layout {
+      max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 7rem;
+      display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start;
+    }
+    .article-content {}
+    .article-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; color: var(--azul);
+      margin: 2.5rem 0 1rem; line-height: 1.3;
+    }
+    .article-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500; color: var(--azul);
+      margin: 2rem 0 0.8rem;
+    }
+    .article-content p {
+      font-size: 0.95rem; color: var(--cinza-text);
+      line-height: 1.85; margin-bottom: 1.3rem;
+    }
+    .article-content ul {
+      margin: 0 0 1.3rem 1.2rem; list-style: disc;
+    }
+    .article-content ul li {
+      font-size: 0.95rem; color: var(--cinza-text);
+      line-height: 1.75; margin-bottom: 0.4rem;
+    }
+    .article-content blockquote {
+      border-left: 3px solid var(--amarelo);
+      padding: 1rem 1.5rem;
+      background: var(--cinza-card);
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+    }
+    .article-content blockquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic; font-weight: 400;
+      color: var(--azul); margin: 0; line-height: 1.6;
+    }
+    .article-content .highlight-box {
+      background: var(--azul); border-radius: 12px;
+      padding: 2rem; margin: 2rem 0;
+    }
+    .article-content .highlight-box p {
+      color: rgba(255,255,255,0.7); margin: 0;
+    }
+    .article-content .highlight-box h3 {
+      color: var(--amarelo-bg); margin-bottom: 0.8rem; margin-top: 0;
+    }
+    .article-cta {
+      background: var(--cinza-card); border-radius: 12px;
+      padding: 2.5rem; margin-top: 3rem; text-align: center;
+      border: 1px solid var(--borda);
+    }
+    .article-cta h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--azul); margin-bottom: 0.8rem;
+    }
+    .article-cta p {
+      font-size: 0.88rem; color: var(--cinza-text); margin-bottom: 1.5rem; line-height: 1.6;
+    }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 90px; }
+    .sidebar-card {
+      background: var(--branco); border: 1px solid var(--borda);
+      border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem;
+    }
+    .sidebar-card h4 {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cinza-text); margin-bottom: 1.2rem;
+    }
+    .sidebar-toc { display: flex; flex-direction: column; gap: 0.6rem; }
+    .sidebar-toc a {
+      font-size: 0.83rem; color: var(--cinza-text);
+      padding-left: 0.8rem; border-left: 2px solid var(--borda);
+      transition: color 0.2s, border-color 0.2s;
+      line-height: 1.4;
+    }
+    .sidebar-toc a:hover { color: var(--azul); border-left-color: var(--amarelo); }
+    .sidebar-autor-nome {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 500; color: var(--azul);
+    }
+    .sidebar-autor-cargo {
+      font-size: 0.7rem; color: var(--amarelo); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .sidebar-autor-reg { font-size: 0.72rem; color: var(--cinza-text); margin-bottom: 0.8rem; }
+    .sidebar-cta-card {
+      background: var(--azul); border-radius: 12px; padding: 1.8rem;
+    }
+    .sidebar-cta-card p {
+      font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 1.2rem;
+    }
+    .sidebar-cta-card .btn { width: 100%; text-align: center; display: block; }
+
+    /* ARTIGOS RELACIONADOS */
+    .relacionados { max-width: 1200px; margin: 0 auto; padding: 0 2rem 7rem; }
+    .relacionados h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300; color: var(--azul);
+      margin-bottom: 2rem;
+    }
+    .relacionados-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .rel-card {
+      background: var(--branco); border: 1px solid var(--borda); border-radius: 12px;
+      overflow: hidden; transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .rel-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(27,42,74,0.09); }
+    .rel-card-img { height: 140px; }
+    .rel-card-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .rel-card-img-inner p { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: rgba(255,255,255,0.55); text-align: center; padding: 1rem; }
+    .rel-card-body { padding: 1.4rem; }
+    .rel-cat { font-size: 0.63rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amarelo); margin-bottom: 0.6rem; }
+    .rel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--azul); line-height: 1.35; }
+
+    /* FOOTER MINI */
+    .footer-mini { background: var(--azul); padding: 2rem 0; }
+    .footer-mini-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-mini-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-mini-brand .logo-mark {
+      width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amarelo-bg);
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600;
+    }
+    .footer-mini-brand .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500; color: var(--branco); letter-spacing: 0.08em;
+    }
+    .footer-mini p { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* WHATSAPP */
+    .wsp-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      background: #25D366; width: 56px; height: 56px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s;
+    }
+    .wsp-float:hover { transform: scale(1.08); }
+    .wsp-float svg { width: 26px; height: 26px; fill: white; }
+
+    .bg-1 { background: linear-gradient(135deg, #1B2A4A 0%, #2A3F6B 100%); }
+    .bg-2 { background: linear-gradient(135deg, #D4A017 0%, #b8891a 100%); }
+    .bg-4 { background: linear-gradient(135deg, #2A3F6B 0%, #1B2A4A 100%); }
+
+    @media (max-width: 960px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .relacionados-grid { grid-template-columns: 1fr; }
+      .footer-mini-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .article-layout { padding: 2rem 1.2rem 5rem; }
+      .relacionados { padding: 0 1.2rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-inner">
+    <a href="../index.html">
+      <div class="nav-logo-placeholder">
+        <div class="logo-mark">BC</div>
+        <span class="logo-text">BioCheck</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">&#8592; Ver todos os artigos</a>
+      <a href="../index.html#contato" class="btn btn-primary">Agendar</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO DO ARTIGO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat">
+      <a href="index.html" style="color:rgba(255,255,255,0.4);">Blog</a>
+      <span>/</span>
+      Avaliação
+    </div>
+    <h1>Bioimpedância: o que os números realmente dizem sobre o seu corpo</h1>
+    <p class="subtitle">Entenda como interpretar os dados da bioimpedância e por que a composição corporal vai muito além do peso na balança.</p>
+    <div class="article-meta">
+      <div class="article-meta-item"><strong>Autor</strong>Robson — CREF 018.896 G/MG</div>
+      <div class="article-meta-item"><strong>Categoria</strong>Avaliação</div>
+      <div class="article-meta-item"><strong>Tempo de leitura</strong>8 minutos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO + SIDEBAR -->
+<div class="article-layout">
+  <article class="article-content">
+
+    <h2 id="o-que-e">O que é a bioimpedância?</h2>
+    <p>A bioimpedância é um método de avaliação da composição corporal que mede a resistência que os tecidos do corpo oferecem à passagem de uma corrente elétrica de baixa intensidade. Como diferentes tecidos conduzem eletricidade de maneiras distintas — músculo conduz bem, gordura conduz pouco, água conduz facilmente — o aparelho consegue estimar com precisão a proporção de cada componente no organismo.</p>
+    <p>Ao contrário do que muita gente pensa, a balança comum não fornece nenhuma dessas informações. Ela mede apenas a massa total do corpo, sem distinção entre músculo, gordura, água e osso. Dois indivíduos com o mesmo peso na balança podem ter composições corporais completamente diferentes — e, portanto, saúdes completamente diferentes.</p>
+
+    <blockquote>
+      <p>"Antes de mudar o corpo, entenda o corpo. O peso na balança é apenas uma parte muito pequena da história."</p>
+    </blockquote>
+
+    <h2 id="o-que-mede">O que a bioimpedância realmente mede?</h2>
+    <p>Um exame de bioimpedância de qualidade entrega muito mais do que um número de gordura corporal. Veja os principais indicadores:</p>
+
+    <h3>Percentual de gordura corporal</h3>
+    <p>Este é o indicador mais conhecido, mas precisa ser interpretado dentro de um contexto. O percentual de gordura adequado varia conforme sexo, idade e objetivo. Um atleta de alto rendimento tem percentuais muito diferentes de uma pessoa sedentária — e isso não é necessariamente um problema para esta segunda pessoa, desde que esteja dentro de parâmetros saudáveis.</p>
+
+    <h3>Massa muscular (massa magra)</h3>
+    <p>Talvez o indicador mais importante para a saúde metabólica e funcional. A massa muscular determina a taxa metabólica basal, a capacidade de movimentação, a proteção articular e a saúde a longo prazo. Perder peso sem preservar massa muscular é, na maioria dos casos, um retrocesso para a saúde.</p>
+
+    <h3>Água corporal total</h3>
+    <p>O corpo humano adulto é composto por cerca de 60% de água. Variações nesse percentual indicam estado de hidratação, retenção de líquidos ou até alterações metabólicas relevantes. A bioimpedância distingue entre água intracelular e extracelular, o que fornece informações importantes sobre inflamação e estado de saúde geral.</p>
+
+    <h3>Taxa metabólica basal estimada</h3>
+    <p>A quantidade mínima de energia que o seu corpo precisa para funcionar em repouso. Esse dado é essencial para qualquer planejamento nutricional e de treino — sem ele, qualquer cálculo de ingestão calórica é uma estimativa grosseira.</p>
+
+    <h3>Índice de massa visceral</h3>
+    <p>A gordura visceral — aquela que envolve os órgãos internos — é a mais perigosa para a saúde cardiovascular e metabólica. Mesmo pessoas com peso considerado normal podem ter índices de gordura visceral elevados, o que não seria detectado por uma avaliação simples de IMC ou peso.</p>
+
+    <div class="highlight-box">
+      <h3>Por que o IMC sozinho é insuficiente?</h3>
+      <p>O Índice de Massa Corporal (IMC) divide o peso pela altura ao quadrado. Ele não distingue músculo de gordura, não considera distribuição de gordura, não avalia estado de hidratação e não reflete a saúde metabólica real. Um fisiculturista com muita massa muscular pode ter IMC classificado como "obeso". Uma pessoa sedentária com pouca massa muscular pode ter IMC "normal" e ainda assim ter composição corporal desfavorável à saúde.</p>
+    </div>
+
+    <h2 id="como-interpretar">Como interpretar os resultados corretamente?</h2>
+    <p>Esta é a parte que diferencia uma avaliação bem feita de um exame mal aproveitado. Os números isolados têm pouco valor. O que importa é a interpretação técnica dentro do contexto de cada pessoa.</p>
+    <p>Na BioCheck, cada avaliação inclui um relatório interpretado, onde os dados são analisados levando em conta:</p>
+    <ul>
+      <li>Histórico de saúde e objetivos individuais</li>
+      <li>Nível de atividade física atual</li>
+      <li>Sexo, idade e características corporais</li>
+      <li>Comparação com parâmetros de referência baseados em evidências</li>
+      <li>Evolução em relação a avaliações anteriores</li>
+    </ul>
+    <p>Sem esse contexto, um percentual de gordura de 20% pode ser excelente para uma pessoa e inadequado para outra. Dados sem interpretação são apenas números.</p>
+
+    <h2 id="como-se-preparar">Como se preparar para o exame?</h2>
+    <p>A precisão da bioimpedância depende muito do estado de hidratação e do momento do dia. Para obter resultados mais precisos:</p>
+    <ul>
+      <li>Evite atividade física intensa nas 12 horas anteriores</li>
+      <li>Mantenha hidratação normal (não exagere na ingestão de água antes do exame)</li>
+      <li>Faça o exame em jejum de pelo menos 4 horas, se possível</li>
+      <li>Realize avaliações sempre no mesmo período do dia para comparações</li>
+      <li>Evite o período pré-menstrual, pois a retenção hídrica altera os resultados</li>
+    </ul>
+
+    <h2 id="frequencia">Com que frequência reavaliar?</h2>
+    <p>Não existe uma resposta única, mas a referência mais utilizada na prática clínica é uma reavaliação a cada 8 a 12 semanas. Esse intervalo é suficiente para que mudanças reais na composição corporal sejam detectáveis pelo equipamento.</p>
+    <p>Reavaliar com frequência excessiva pode gerar ansiedade desnecessária com variações naturais de água corporal e não reflete mudanças reais de tecido. O importante é ter uma linha de base bem estabelecida e um acompanhamento consistente ao longo do tempo.</p>
+
+    <blockquote>
+      <p>"O objetivo da avaliação não é um número. É entender onde você está para traçar com precisão onde quer chegar."</p>
+    </blockquote>
+
+    <h2 id="bioimpedancia-vs-adipometria">Bioimpedância e adipometria: como se complementam?</h2>
+    <p>A adipometria — medição de dobras cutâneas com compasso — é um método complementar que avalia a espessura da gordura subcutânea em pontos específicos do corpo. Enquanto a bioimpedância fornece uma visão global da composição corporal, a adipometria permite mapear onde a gordura está distribuída e acompanhar mudanças regionais.</p>
+    <p>Na Avaliação Plus e Avaliação Premium da BioCheck, ambos os métodos são utilizados em conjunto, proporcionando um diagnóstico muito mais completo e preciso do que qualquer método isolado.</p>
+
+    <div class="article-cta">
+      <h3>Pronto para entender o seu corpo de verdade?</h3>
+      <p>Agende uma avaliação completa com Robson e tenha um relatório técnico interpretado da sua composição corporal, com orientações individualizadas para o seu objetivo.</p>
+      <a href="https://wa.me/5534988858182?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20bioimpedância." target="_blank" class="btn btn-primary">Agendar avaliação</a>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Neste artigo</h4>
+      <nav class="sidebar-toc">
+        <a href="#o-que-e">O que é a bioimpedância</a>
+        <a href="#o-que-mede">O que ela realmente mede</a>
+        <a href="#como-interpretar">Como interpretar os resultados</a>
+        <a href="#como-se-preparar">Como se preparar</a>
+        <a href="#frequencia">Com que frequência reavaliar</a>
+        <a href="#bioimpedancia-vs-adipometria">Bioimpedância e adipometria</a>
+      </nav>
+    </div>
+    <div class="sidebar-card">
+      <h4>Autor</h4>
+      <div class="sidebar-autor-nome">Robson</div>
+      <div class="sidebar-autor-cargo">Prof. de Educação Física</div>
+      <div class="sidebar-autor-reg">CREF 018.896 G/MG</div>
+      <p style="font-size:0.82rem;color:var(--cinza-text);line-height:1.6;">Especialista em avaliação física, prescrição de treino e performance. Atua na BioCheck com foco em protocolos baseados em dados corporais.</p>
+    </div>
+    <div class="sidebar-cta-card">
+      <p>Seu corpo tem uma história que vai além do peso. Comece com uma avaliação completa.</p>
+      <a href="../index.html#contato" class="btn btn-gold">Agendar avaliação</a>
+    </div>
+  </aside>
+</div>
+
+<!-- ARTIGOS RELACIONADOS -->
+<section class="relacionados">
+  <h2>Artigos relacionados</h2>
+  <div class="relacionados-grid">
+    <a href="por-que-dieta-generica-nao-funciona.html" class="rel-card">
+      <div class="rel-card-img">
+        <div class="rel-card-img-inner bg-2">
+          <p>Nutrição individualizada</p>
+        </div>
+      </div>
+      <div class="rel-card-body">
+        <div class="rel-cat">Nutrição</div>
+        <div class="rel-title">Por que dieta genérica não funciona — e o que fazer diferente</div>
+      </div>
+    </a>
+    <a href="treino-de-corrida-com-metodo.html" class="rel-card">
+      <div class="rel-card-img">
+        <div class="rel-card-img-inner bg-4">
+          <p>Corrida com método</p>
+        </div>
+      </div>
+      <div class="rel-card-body">
+        <div class="rel-cat">Corrida</div>
+        <div class="rel-title">Treino de corrida com método: como evoluir sem se machucar</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER MINI -->
+<footer class="footer-mini">
+  <div class="footer-mini-inner">
+    <a href="../index.html" class="footer-mini-brand">
+      <div class="logo-mark">BC</div>
+      <span class="logo-text">BioCheck</span>
+    </a>
+    <p>&copy; 2026 BioCheck · Araxá, MG</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5534988858182" target="_blank" rel="noopener" class="wsp-float">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
